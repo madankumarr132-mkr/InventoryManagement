@@ -1,3 +1,5 @@
+
+
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_mysqldb import MySQL
 import config
@@ -14,10 +16,18 @@ app.secret_key = "zp_inventory_secret_key"
 # ==========================
 # Database Configuration
 # ==========================
+
+
 app.config["MYSQL_HOST"] = config.MYSQL_HOST
 app.config["MYSQL_USER"] = config.MYSQL_USER
 app.config["MYSQL_PASSWORD"] = config.MYSQL_PASSWORD
 app.config["MYSQL_DB"] = config.MYSQL_DB
+
+print("MYSQL_HOST =", app.config["hayabusa.proxy.rlwy.net"])
+print("MYSQL_USER =", app.config["root"])
+print("MYSQL_DB =", app.config["railway"])
+
+
 
 mysql = MySQL(app)
 
