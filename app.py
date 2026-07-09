@@ -67,6 +67,7 @@ def home():
         ORDER BY available_qty ASC
     """)
     low_stock = cursor.fetchall()
+    low_stock_count = len(low_stock)
 
     # Last 5 transactions
     cursor.execute("""
@@ -86,12 +87,13 @@ def home():
     cursor.close()
 
     return render_template(
-        "index.html",
-        total_items=total_items,
-        total_stock=total_stock,
-        low_stock=low_stock,
-        recent_transactions=recent_transactions
-    )
+    "index.html",
+    total_items=total_items,
+    total_stock=total_stock,
+    low_stock=low_stock,
+    low_stock_count=low_stock_count,
+    recent_transactions=recent_transactions
+)
 
 # ==========================
 # Add Item
