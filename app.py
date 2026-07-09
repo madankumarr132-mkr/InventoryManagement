@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-#from flask_mysqldb import MySQL
+from flask_mysqldb import MySQL
 import config
 
 from openpyxl import Workbook
@@ -19,7 +19,7 @@ app.config["MYSQL_USER"] = config.MYSQL_USER
 app.config["MYSQL_PASSWORD"] = config.MYSQL_PASSWORD
 app.config["MYSQL_DB"] = config.MYSQL_DB
 
-#mysql = MySQL(app)
+mysql = MySQL(app)
 
 def log_activity(username, activity):
 
