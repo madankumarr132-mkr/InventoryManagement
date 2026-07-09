@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}
+Activity Log
+{% endblock %}
+
+{% block content %}
+
+<h2>Activity Log</h2>
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Activity</th>
+            <th>Date & Time</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+{% if logs %}
+
+    {% for log in logs %}
+    <tr>
+        <td>{{ log[0] }}</td>
+        <td>{{ log[1] }}</td>
+        <td>{{ log[2] }}</td>
+        <td>{{ log[3] }}</td>
+    </tr>
+    {% endfor %}
+
+{% else %}
+
+    <tr>
+        <td colspan="4" class="text-center">
+            No activity found.
+        </td>
+    </tr>
+
+{% endif %}
+
+</tbody>
+
+</table>
+
+<a href="{{ url_for('home') }}" class="btn btn-secondary">
+    Back to Dashboard
+</a>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block title %}
+Item History
+{% endblock %}
+
+{% block content %}
+
+<h2>Item Transaction History</h2>
+
+<table class="table table-bordered">
+
+    <thead class="table-dark">
+
+        <tr>
+            <th>Date</th>
+            <th>Person</th>
+            <th>Department</th>
+            <th>Quantity</th>
+            <th>Type</th>
+            <th>Remarks</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for row in history %}
+
+    <tr>
+
+        <td>{{ row[0] }}</td>
+        <td>{{ row[1] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[5] }}</td>
+
+    </tr>
+
+    {% else %}
+
+    <tr>
+        <td colspan="6" class="text-center">
+            No transactions found.
+        </td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+<a href="{{ url_for('view_items') }}" class="btn btn-secondary">
+    Back
+</a>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}
+Stock Adjustment
+{% endblock %}
+
+{% block content %}
+
+<h2>Stock Adjustment</h2>
+
+<form method="POST">
+
+    <div class="mb-3">
+        <label>Item</label>
+
+        <select name="item_id" class="form-control" required>
+
+            {% for item in items %}
+
+            <option value="{{ item[0] }}">
+                {{ item[1] }}
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+    <div class="mb-3">
+        <label>New Quantity</label>
+
+        <input
+            type="number"
+            name="new_quantity"
+            class="form-control"
+            required>
+    </div>
+
+    <div class="mb-3">
+        <label>Reason</label>
+
+        <input
+            type="text"
+            name="reason"
+            class="form-control"
+            placeholder="Reason for adjustment"
+            required>
+    </div>
+
+    <button class="btn btn-primary">
+        Update Stock
+    </button>
+
+</form>
+
+{% endblock %}

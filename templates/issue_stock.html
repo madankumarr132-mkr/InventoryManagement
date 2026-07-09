@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}
+Issue Stock
+{% endblock %}
+
+{% block content %}
+
+<h2>Issue Stock</h2>
+
+<form method="POST">
+
+    <div class="mb-3">
+        <label>Select Item</label>
+        <select name="item_id" class="form-control" required>
+
+            {% for item in items %}
+            <option value="{{ item[0] }}">
+                {{ item[1] }} (Available: {{ item[3] }})
+            </option>
+            {% endfor %}
+
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Quantity</label>
+        <input type="number" name="quantity" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+        <label>Person Name</label>
+        <input type="text" name="person_name" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+
+    <label>Department</label>
+
+    <select name="department" class="form-control" required>
+
+        <option value="">-- Select Department --</option>
+
+        {% for dept in departments %}
+            <option value="{{ dept[1] }}">
+                {{ dept[1] }}
+            </option>
+        {% endfor %}
+
+    </select>
+
+</div>
+
+    <div class="mb-3">
+        <label>Remarks</label>
+        <textarea name="remarks" class="form-control"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-danger">
+        Issue Stock
+    </button>
+
+</form>
+
+{% endblock %}

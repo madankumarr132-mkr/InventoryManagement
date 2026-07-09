@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}
+Inventory Report
+{% endblock %}
+
+{% block content %}
+
+<h2>Summary Report</h2>
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Item</th>
+            <th>Category</th>
+            <th>Available Qty</th>
+            <th>Minimum Qty</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for item in items %}
+
+    <tr>
+
+        <td>{{ item[1] }}</td>
+        <td>{{ item[2] }}</td>
+        <td>{{ item[3] }}</td>
+        <td>{{ item[4] }}</td>
+
+        <td>
+
+            {% if item[3] == 0 %}
+
+                <span class="badge bg-danger">
+                    Out of Stock
+                </span>
+
+            {% elif item[3] <= item[4] %}
+
+                <span class="badge bg-warning text-dark">
+                    Low Stock
+                </span>
+
+            {% else %}
+
+                <span class="badge bg-success">
+                    Available
+                </span>
+
+            {% endif %}
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

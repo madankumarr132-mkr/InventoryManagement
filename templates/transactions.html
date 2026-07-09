@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}
+Transaction History
+{% endblock %}
+
+{% block content %}
+
+<h2>Transaction History</h2>
+
+<form method="GET" action="{{ url_for('transactions') }}" class="mb-3">
+
+    <div class="row">
+
+        <div class="col-md-4">
+
+            <select name="department" class="form-control">
+
+                <option value="">All Departments</option>
+
+                {% for dept in departments %}
+
+                    <option value="{{ dept[1] }}"
+                        {% if request.args.get('department') == dept[1] %}
+                            selected
+                        {% endif %}>
+
+                        {{ dept[1] }}
+
+                    </option>
+
+                {% endfor %}
+
+            </select>
+
+        </div>
+
+        <div class="col-md-2">
+
+            <button class="btn btn-primary">
+                Filter
+            </button>
+
+        </div>
+
+    </div>
+
+</form>
+
+<a href="{{ url_for('export_transactions') }}"
+   class="btn btn-success mb-3">
+    Export to Excel
+</a>
+
+<form method="GET" class="row mb-3">
+
+    <div class="col-md-3">
+        <input type="date" name="from_date" class="form-control">
+    </div>
+
+    <div class="col-md-3">
+        <input type="date" name="to_date" class="form-control">
+    </div>
+
+    <div class="col-md-3">
+        <button class="btn btn-primary">
+            Filter
+        </button>
+    </div>
+
+</form>
+
+<button onclick="window.print()" class="btn btn-secondary">
+    Print
+</button>
+
+<table class="table table-bordered table-striped">
+
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Item</th>
+            <th>Person</th>
+            <th>Department</th>
+            <th>Quantity</th>
+            <th>Type</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+    {% for row in transactions %}
+
+    <tr>
+        <td>{{ row[0] }}</td>
+        <td>{{ row[7] }}</td>
+        <td>{{ row[4] }}</td>
+        <td>{{ row[5] }}</td>
+        <td>{{ row[3] }}</td>
+        <td>{{ row[2] }}</td>
+        <td>{{ row[6] }}</td>
+    </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

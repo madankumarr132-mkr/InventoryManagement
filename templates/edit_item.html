@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit Item
+{% endblock %}
+
+{% block content %}
+
+<h2>Edit Item</h2>
+
+<form method="POST">
+
+    <div class="mb-3">
+        <label>Item Name</label>
+        <input type="text"
+               name="item_name"
+               class="form-control"
+               value="{{ item[1] }}"
+               required>
+    </div>
+
+    <div class="mb-3">
+        <label>Category</label>
+        <input type="text"
+               name="category"
+               class="form-control"
+               value="{{ item[2] }}">
+    </div>
+
+    <div class="mb-3">
+        <label>Available Quantity</label>
+        <input type="number"
+               name="available_qty"
+               class="form-control"
+               value="{{ item[3] }}"
+               required>
+    </div>
+
+    <div class="mb-3">
+        <label>Minimum Quantity</label>
+        <input type="number"
+               name="minimum_qty"
+               class="form-control"
+               value="{{ item[4] }}"
+               required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Update Item
+    </button>
+
+    <a href="{{ url_for('view_items') }}" class="btn btn-secondary">
+        Cancel
+    </a>
+
+</form>
+
+{% endblock %}
